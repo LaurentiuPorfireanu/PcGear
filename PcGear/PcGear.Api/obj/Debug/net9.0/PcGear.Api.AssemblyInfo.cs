@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PcGear.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31599bdf225e406eb690f9c5742273e879f1d8f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PcGear.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PcGear.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

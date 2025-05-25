@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\PcGear.Api.props" />
+</Project>

@@ -11,12 +11,4 @@
     <ProjectReference Include="..\PcGear.Infrastructure\PcGear.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\BaseDtos\" />
-    <Folder Include="Dtos\Responses\" />
-    <Folder Include="Dtos\Requests\" />
-    <Folder Include="Mapping\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
