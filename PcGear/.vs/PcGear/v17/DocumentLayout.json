@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\laurp\\Desktop\\Faculta\\Anul 2\\sem2\\MVP\\PcGear\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1345B01-6327-46C2-9E01-9D54FCA86118}|PcGear.Api\\PcGear.Api.csproj|c:\\users\\laurp\\desktop\\faculta\\anul 2\\sem2\\mvp\\pcgear\\pcgear.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F1345B01-6327-46C2-9E01-9D54FCA86118}|PcGear.Api\\PcGear.Api.csproj|solutionrelative:pcgear.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1345B01-6327-46C2-9E01-9D54FCA86118}|PcGear.Api\\PcGear.Api.csproj|c:\\users\\laurp\\desktop\\faculta\\anul 2\\sem2\\mvp\\pcgear\\pcgear.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F1345B01-6327-46C2-9E01-9D54FCA86118}|PcGear.Api\\PcGear.Api.csproj|solutionrelative:pcgear.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\laurp\\Desktop\\Faculta\\Anul 2\\sem2\\MVP\\PcGear\\PcGear.Api\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "PcGear.Api\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\laurp\\Desktop\\Faculta\\Anul 2\\sem2\\MVP\\PcGear\\PcGear.Api\\appsettings.Development.json",
+              "RelativeToolTip": "PcGear.Api\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-25T13:43:21.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\laurp\\Desktop\\Faculta\\Anul 2\\sem2\\MVP\\PcGear\\PcGear.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "PcGear.Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\laurp\\Desktop\\Faculta\\Anul 2\\sem2\\MVP\\PcGear\\PcGear.Api\\appsettings.json",
+              "RelativeToolTip": "PcGear.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-25T13:43:10.18Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
