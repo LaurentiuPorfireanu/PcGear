@@ -27,9 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Config\" />
-    <Folder Include="Exceptions\" />
     <Folder Include="Middlewares\" />
   </ItemGroup>
 
