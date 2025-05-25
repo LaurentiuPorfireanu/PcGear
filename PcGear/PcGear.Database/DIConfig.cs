@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using PcGear.Database.Context;
 using PcGear.Database.Repos;
-using PcGear.Database.Repositories;
+
 
 namespace PcGear.Database
 {

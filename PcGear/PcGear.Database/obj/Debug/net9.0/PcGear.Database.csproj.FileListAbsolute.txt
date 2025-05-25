@@ -1,4 +1,5 @@
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\bin\Debug\net9.0\PcGear.Database.deps.json
+C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\bin\Debug\net9.0\PcGear.Database.runtimeconfig.json
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\bin\Debug\net9.0\PcGear.Database.dll
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\bin\Debug\net9.0\PcGear.Database.pdb
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\bin\Debug\net9.0\PcGear.Infrastructure.dll
@@ -13,4 +14,5 @@ C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\obj\Debug\net9.0\PcGear.D.1
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\obj\Debug\net9.0\PcGear.Database.dll
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\obj\Debug\net9.0\refint\PcGear.Database.dll
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\obj\Debug\net9.0\PcGear.Database.pdb
+C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\obj\Debug\net9.0\PcGear.Database.genruntimeconfig.cache
 C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Database\obj\Debug\net9.0\ref\PcGear.Database.dll

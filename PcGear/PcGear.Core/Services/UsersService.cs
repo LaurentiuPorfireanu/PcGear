@@ -1,7 +1,7 @@
 ﻿using PcGear.Core.Dtos.BaseDtos.Users;
 using PcGear.Core.Dtos.Requests;
 using PcGear.Core.Mapping;
-using PcGear.Database.Repositories;
+using PcGear.Database.Repos;
 
 namespace PcGear.Core.Services
 {

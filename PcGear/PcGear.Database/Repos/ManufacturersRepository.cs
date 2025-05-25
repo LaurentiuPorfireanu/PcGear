@@ -2,7 +2,7 @@
 using PcGear.Database.Entities;
 using PcGear.Database.Repos;
 
-namespace PcGear.Database.Repositories;
+namespace PcGear.Database.Repos;
 
 public class ManufacturersRepository(PcGearDatabaseContext databaseContext) : BaseRepository<Manufacturer>(databaseContext)
 {

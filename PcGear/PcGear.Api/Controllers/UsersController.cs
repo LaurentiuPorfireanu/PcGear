@@ -8,14 +8,14 @@ namespace PcGear.Api.Controllers
     [Route("api/users")]
     public class UsersController(UsersService usersService) : ControllerBase
     {
-        [HttpPost]
+        [HttpPost("add_user")]
         public async Task<IActionResult> AddUser([FromBody] AddUserRequest request)
         {
             await usersService.AddUserAsync(request);
             return Ok("User added successfully");
         }
 
-        [HttpGet]
+        [HttpGet("get all users")]
         public async Task<IActionResult> GetAllUsers()
         {
             var result = await usersService.GetAllUsersAsync();

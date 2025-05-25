@@ -31,5 +31,35 @@ namespace PcGear.Database.Repos
             databaseContext.Products.Add(product);
             await SaveChangesAsync();
         }
+
+        public async Task<Product?> GetByIdAsync(int id)
+        {
+            return await databaseContext.Products
+                .Include(p => p.Category)
+                .Include (p => p.Manufacturer)
+                .Where(p => p.Id == id && p.DeletedAt == null)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task UpdateAsync(Product product)
+        {
+            product.ModifiedAt = DateTime.UtcNow;
+            databaseContext.Products.Update(product);
+            await SaveChangesAsync();
+        }
+        
+
+        public async Task DeleteAsync(int id)
+        {
+            var product = await GetByIdAsync(id);
+            if(product != null)
+            {
+                product.DeletedAt = DateTime.UtcNow;
+                await UpdateAsync(product);
+
+            }
+        }
+
+
     }
 }

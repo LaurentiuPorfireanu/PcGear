@@ -2,13 +2,14 @@
 using PcGear.Database.Entities;
 using PcGear.Database.Repos;
 
-namespace PcGear.Database.Repositories;
-
-public class UsersRepository(PcGearDatabaseContext databaseContext) : BaseRepository<User>(databaseContext)
+namespace PcGear.Database.Repos
 {
-    public async Task AddAsync(User user)
+    public class UsersRepository(PcGearDatabaseContext databaseContext) : BaseRepository<User>(databaseContext)
     {
-        databaseContext.Users.Add(user);
-        await SaveChangesAsync();
+        public async Task AddAsync(User user)
+        {
+            databaseContext.Users.Add(user);
+            await SaveChangesAsync();
+        }
     }
 }

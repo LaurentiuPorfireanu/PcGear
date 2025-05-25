@@ -1,8 +1,4 @@
 is_global = true
-build_property.EnableAotAnalyzer = true
-build_property.EnableSingleFileAnalyzer = true
-build_property.EnableTrimAnalyzer = true
-build_property.IncludeAllContentForSelfExtract = 
 build_property.TargetFramework = net9.0
 build_property.TargetFramework = net9.0
 build_property.TargetPlatformMinVersion = 
@@ -23,7 +19,7 @@ build_property.RootNamespace = PcGear.Api
 build_property.RootNamespace = PcGear.Api
 build_property.ProjectDir = C:\Users\laurp\Desktop\PcGear\PcGear\PcGear.Api\
 build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
