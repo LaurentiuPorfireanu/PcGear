@@ -8,14 +8,14 @@ namespace PcGear.Api.Controllers
     [Route("api/categories")]
     public class CategoriesController(CategoriesService categoriesService) : ControllerBase
     {
-        [HttpPost]
+        [HttpPost("add_categpry")]
         public async Task<IActionResult> AddCategory([FromBody] AddCategoryRequest request)
         {
             await categoriesService.AddCategoryAsync(request);
             return Ok("Category added successfully");
         }
 
-        [HttpGet]
+        [HttpGet("get_categories")]
         public async Task<IActionResult> GetAllCategories()
         {
             var result = await categoriesService.GetAllCategoriesAsync();

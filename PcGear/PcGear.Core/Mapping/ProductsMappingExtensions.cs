@@ -71,7 +71,7 @@ namespace PcGear.Core.Mapping
             return response;
         }
 
-        private static ProductReviewDto ToProductReviewDto(this ProductReview review)
+        public static ProductReviewDto ToProductReviewDto(this ProductReview review)
         {
             return new ProductReviewDto
             {
@@ -84,5 +84,23 @@ namespace PcGear.Core.Mapping
         }
 
 
+        public static void UpdateFromRequest(this Product product, UpdateProductRequest request)
+        {
+            product.Name = request.Name;
+            product.Description = request.Description;
+            product.Price = request.Price;
+            product.Stock = request.Stock;
+            product.CategoryId = request.CategoryId;
+            product.ManufacturerId = request.ManufacturerId;
+            product.ModifiedAt = DateTime.UtcNow;
+
+        }
+
+
+        public static void UpdateStockFromRequest(this Product product, UpdateProductStockRequest request)
+        {
+            product.Stock = request.Stock;
+            product.ModifiedAt = DateTime.UtcNow;
+        }
     }
 }

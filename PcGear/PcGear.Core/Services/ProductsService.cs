@@ -31,5 +31,34 @@ namespace PcGear.Core.Services
 
             return product.ToGetProductWithReviewsResponse();
         }
+
+        public async Task<ProductDto?> GetProductByIdAsync(int id)
+        {
+            var product = await productsRepository.GetByIdAsync(id);
+            return product?.ToProductDto();
+        }
+        public async Task UpdateProductAsync(int id, UpdateProductRequest request)
+        {
+            var product = await productsRepository.GetByIdAsync(id);
+
+            product.UpdateFromRequest(request);
+            await productsRepository.UpdateAsync(product);
+        }
+
+        public async Task UpdateProductStockAsync(int id, UpdateProductStockRequest request)
+        {
+            var product = await productsRepository.GetByIdAsync(id);
+
+            product.UpdateStockFromRequest(request);
+            await productsRepository.UpdateAsync(product);
+        }
+
+        public async Task DeleteProductAsync(int id)
+        {
+            var product = await productsRepository.GetByIdAsync(id);
+
+
+            await productsRepository.DeleteAsync(id);
+        }
     }
 }

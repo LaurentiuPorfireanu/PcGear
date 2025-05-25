@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PcGear.Database")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31599bdf225e406eb690f9c5742273e879f1d8f4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2623de1123d06dc70f8e4d15b548f3283938258")]
 [assembly: System.Reflection.AssemblyProductAttribute("PcGear.Database")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PcGear.Database")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
