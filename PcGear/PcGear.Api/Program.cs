@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "PcGear", Version = "v1" });
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = @"JWT Authorization header using the Bearer scheme.",
+        Description = @"JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
@@ -34,20 +34,26 @@ builder.Services.AddSwaggerGen(options =>
                     Id = "Bearer"
                 },
                 In = ParameterLocation.Header,
-            }, new List<string>()
+            },
+            new List<string>()
         }
     });
 });
+
 builder.Services.AddRepositories();
 builder.Services.AddServices();
+
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
+})
+.AddJwtBearer(options =>
 {
+    var jwtSettings = AppConfig.JWTSettings;
+
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
@@ -58,10 +64,10 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ClockSkew = TimeSpan.FromMinutes(5),
 
-        ValidIssuer = "Backend",
-        ValidAudience = "Frontend",
+        ValidIssuer = jwtSettings?.Issuer ?? "Backend",
+        ValidAudience = jwtSettings?.Audience ?? "Frontend",
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-            builder.Configuration["JWT:SecurityKey"] ?? "1A9F4BBA21EC3E3D00F60F923A7359E9861B0B01F5A1247F28E7A496ED6E5E0D"
+            jwtSettings?.SecurityKey ?? "1A9F4BBA21EC3E3D00F60F923A7359E9861B0B01F5A1247F28E7A496ED6E5E0D"
         ))
     };
 });
@@ -76,6 +82,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<LoggingMiddleware>();
+
 
 app.UseAuthentication();
 app.UseAuthorization();

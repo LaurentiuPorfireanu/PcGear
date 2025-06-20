@@ -29,8 +29,7 @@ namespace PcGear.Core.Services
 
                 if (HashPassword(request.Password, Convert.FromBase64String(user.PasswordSalt)) == user.Password)
                 {
-                    var role = GetRole(user);
-                    var token = GetToken(user, role);
+                    var token = GenerateJwtToken(user);
 
                     return new
                     {
@@ -56,8 +55,6 @@ namespace PcGear.Core.Services
             }
         }
 
-
-
         public async Task<object> RegisterAsync(RegisterRequest request)
         {
             if (request == null)
@@ -65,13 +62,11 @@ namespace PcGear.Core.Services
                 throw new ArgumentException("Registration data is required");
             }
 
-            
             if (request.Password != request.ConfirmPassword)
             {
                 throw new ArgumentException("Passwords do not match");
             }
 
-      
             try
             {
                 await _usersRepository.GetByEmailAsync(request.Email);
@@ -79,7 +74,7 @@ namespace PcGear.Core.Services
             }
             catch (ResourceMissingException)
             {
-             
+                
             }
 
             var salt = GenerateSalt();
@@ -102,40 +97,44 @@ namespace PcGear.Core.Services
             return new { message = "Registration successful", userId = user.Id };
         }
 
-        public string GetToken(User user, string role)
+        private string GenerateJwtToken(User user)
         {
-            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var jwtSettings = AppConfig.JWTSettings;
+            if (jwtSettings == null)
+                throw new InvalidOperationException("JWT settings not configured");
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfig.JWTSettings.SecurityKey));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(jwtSettings.SecurityKey);
 
-            var claims = new[]
+            var claims = new List<Claim>
             {
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        new Claim(ClaimTypes.Email, user.Email),
-        new Claim(ClaimTypes.GivenName, user.FirstName),
-        new Claim(ClaimTypes.Surname, user.LastName),
-        new Claim(ClaimTypes.Role, role),
-
-        new Claim("userId", user.Id.ToString()),
-        new Claim("email", user.Email),
-        new Claim("role", role)
-    };
-
-            var tokenDescriptior = new SecurityTokenDescriptor
-            {
-                Issuer = "Backend",
-                Audience = "Frontend",
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddYears(1),
-                SigningCredentials = credentials
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User"),
+                
+            
+                new Claim("userId", user.Id.ToString()),
+                new Claim("email", user.Email),
+                new Claim("role", user.IsAdmin ? "Admin" : "User")
             };
 
-            var token = jwtTokenHandler.CreateToken(tokenDescriptior);
-            var tokenString = jwtTokenHandler.WriteToken(token);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddMinutes(jwtSettings.ExpiryInMinutes),
+                Issuer = jwtSettings.Issuer,
+                Audience = jwtSettings.Audience,
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature)
+            };
 
-            return tokenString;
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
+
         public byte[] GenerateSalt()
         {
             byte[] salt = new byte[128 / 8];
@@ -143,7 +142,6 @@ namespace PcGear.Core.Services
             {
                 rng.GetBytes(salt);
             }
-
             return salt;
         }
 
@@ -157,11 +155,6 @@ namespace PcGear.Core.Services
                 numBytesRequested: 256 / 8);
 
             return Convert.ToBase64String(bytes);
-        }
-
-        private string GetRole(User user)
-        {
-            return user.IsAdmin ? "Admin" : "User";
         }
     }
 }
