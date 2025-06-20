@@ -10,8 +10,8 @@ public static class DIConfig
         services.AddScoped<ProductsService>();
         services.AddScoped<CategoriesService>();
         services.AddScoped<ManufacturersService>();
-        services.AddScoped<UsersService>();
         services.AddScoped<ProductReviewsService>();
+        services.AddScoped<AuthService>();
 
         return services;
     }

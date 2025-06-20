@@ -2,6 +2,7 @@
 using PcGear.Core.Dtos.Requests;
 using PcGear.Core.Dtos.Responses;
 using PcGear.Core.Mapping;
+using PcGear.Database.Dtos;
 using PcGear.Database.Repos;
 
 
@@ -59,6 +60,29 @@ namespace PcGear.Core.Services
 
 
             await productsRepository.DeleteAsync(id);
+        }
+        public async Task<List<ProductDto>> GetFilteredProductsAsync(ProductFilterRequest filter)
+        {
+            var products = await productsRepository.GetFilteredProductsAsync(filter);
+            return products.ToProductDtos();
+        }
+
+        public async Task<int> GetFilteredProductsCountAsync(ProductFilterRequest filter)
+        {
+            return await productsRepository.GetFilteredProductsCountAsync(filter);
+        }
+  
+        public async Task<PagedResult<ProductDto>> GetFilteredProductsPagedAsync(ProductFilterRequest filter)
+        {
+            var pagedResult = await productsRepository.GetFilteredProductsPagedAsync(filter);
+
+            return new PagedResult<ProductDto>(
+                pagedResult.Data.ToProductDtos(),
+                pagedResult.TotalCount,
+                pagedResult.Page,
+                pagedResult.PageSize,
+                pagedResult.AppliedFilters
+            );
         }
     }
 }
