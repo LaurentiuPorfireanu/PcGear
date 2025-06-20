@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PcGear.Core.Dtos.Requests;
 using PcGear.Core.Services;
+using PcGear.Database.Dtos;
+
 
 namespace PcGear.Api.Controllers
 {
 
     [ApiController]
     [Route("api/products")]
+
     public class ProductsController(ProductsService productsService) : ControllerBase
     {
+        [Authorize]
         [HttpPost("add_product")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
@@ -16,6 +21,7 @@ namespace PcGear.Api.Controllers
             return Ok("Product added successfully");
         }
 
+        [Authorize]
         [HttpGet("get_products")]
         public async Task<IActionResult> GetAllProducts()
         {
@@ -25,6 +31,8 @@ namespace PcGear.Api.Controllers
 
 
         [HttpGet("get_products_by_id:{id}")]
+        [Authorize]
+
         public async Task<IActionResult> GetProductById(int id)
         {
             var result = await productsService.GetProductByIdAsync(id);
@@ -36,6 +44,8 @@ namespace PcGear.Api.Controllers
 
 
         [HttpGet("get_producs_with_reviews{id}")]
+        [Authorize]
+
         public async Task<IActionResult> GetProductWithReviews(int id)
         {
             var result = await productsService.GetProductWithReviewsAsync(id);
@@ -43,6 +53,8 @@ namespace PcGear.Api.Controllers
         }
 
         [HttpPut("update_product{id}")]
+        [Authorize]
+
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest request)
         {
             await productsService.UpdateProductAsync(id, request);
@@ -51,6 +63,8 @@ namespace PcGear.Api.Controllers
 
 
         [HttpPatch("update_product_stock{id}")]
+        [Authorize]
+
         public async Task<IActionResult> UpdateProductStock(int id, [FromBody] UpdateProductStockRequest request)
         {
             await productsService.UpdateProductStockAsync(id, request);
@@ -59,13 +73,45 @@ namespace PcGear.Api.Controllers
 
 
         [HttpDelete("delete_product{id}")]
+        [Authorize]
+
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await productsService.DeleteProductAsync(id);
             return Ok("Product deleted successfully");
         }
 
+       
 
+        [HttpGet("paged")]
+        [Authorize]
 
+        public async Task<IActionResult> GetFilteredProductsPaged([FromQuery] ProductFilterRequest filter)
+        {
+            var result = await productsService.GetFilteredProductsPagedAsync(filter);
+            return Ok(result);
+        }
+
+        
+        [HttpGet("filtered")]
+        [Authorize]
+
+        public async Task<IActionResult> GetFilteredProducts([FromQuery] ProductFilterRequest filter)
+        {
+            var result = await productsService.GetFilteredProductsAsync(filter);
+            var totalCount = await productsService.GetFilteredProductsCountAsync(filter);
+
+            return Ok(new
+            {
+                Data = result,
+                TotalCount = totalCount,
+                AppliedFilters = filter
+            });
+
+        }
+
+        
+        
     }
+
 }

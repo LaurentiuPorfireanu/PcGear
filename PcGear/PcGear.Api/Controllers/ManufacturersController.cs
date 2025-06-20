@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PcGear.Core.Dtos.Requests;
 using PcGear.Core.Services;
 
@@ -6,6 +7,7 @@ namespace PcGear.Api.Controllers
 {
     [ApiController]
     [Route("api/manufacturers")]
+    [Authorize]
     public class ManufacturersController(ManufacturersService manufacturersService) : ControllerBase
     {
         [HttpPost("add manufacturer")]
@@ -16,6 +18,7 @@ namespace PcGear.Api.Controllers
         }
 
         [HttpGet("get_manufacturers")]
+        [Authorize]
         public async Task<IActionResult> GetAllManufacturers()
         {
             var result = await manufacturersService.GetAllManufacturersAsync();

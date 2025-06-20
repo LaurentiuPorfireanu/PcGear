@@ -14,10 +14,4 @@
     <ProjectReference Include="..\PcGear.Infrastructure\PcGear.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="Enums\" />
-    <Folder Include="QueryExtensions\" />
-  </ItemGroup>
-
 </Project>
