@@ -12,7 +12,28 @@ namespace PcGear.Database.Repos
             await SaveChangesAsync();
         }
 
-        
+        public async Task<Category?> GetByIdAsync(int id)
+        {
+            return await databaseContext.Categories
+                .Where(c => c.Id == id && c.DeletedAt == null)
+                .FirstOrDefaultAsync();
+        }
 
+        public async Task UpdateAsync(Category category)
+        {
+            category.ModifiedAt = DateTime.UtcNow;
+            databaseContext.Categories.Update(category);
+            await SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var category = await GetByIdAsync(id);
+            if (category != null)
+            {
+                category.DeletedAt = DateTime.UtcNow;
+                await UpdateAsync(category);
+            }
+        }
     }
 }

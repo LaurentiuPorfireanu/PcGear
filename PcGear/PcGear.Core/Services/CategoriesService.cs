@@ -20,6 +20,27 @@ namespace PcGear.Core.Services
             return categories.ToCategoryDtos();
         }
 
-      
+        public async Task<CategoryDto?> GetCategoryByIdAsync(int id)
+        {
+            var category = await categoriesRepository.GetByIdAsync(id);
+            return category?.ToCategoryDto();
+        }
+
+        public async Task UpdateCategoryAsync(int id, UpdateCategoryRequest request)
+        {
+            var category = await categoriesRepository.GetByIdAsync(id);
+            if (category == null)
+                throw new ResourceMissingException("Category not found");
+
+            category.Name = request.Name;
+            category.Description = request.Description;
+
+            await categoriesRepository.UpdateAsync(category);
+        }
+
+        public async Task DeleteCategoryAsync(int id)
+        {
+            await categoriesRepository.DeleteAsync(id);
+        }
     }
 }
