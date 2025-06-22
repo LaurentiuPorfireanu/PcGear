@@ -1,4 +1,5 @@
-﻿using PcGear.Database.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PcGear.Database.Context;
 using PcGear.Database.Entities;
 
 namespace PcGear.Database.Repos
@@ -10,5 +11,8 @@ namespace PcGear.Database.Repos
             databaseContext.Categories.Add(category);
             await SaveChangesAsync();
         }
+
+        
+
     }
 }

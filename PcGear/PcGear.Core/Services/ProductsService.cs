@@ -61,16 +61,9 @@ namespace PcGear.Core.Services
 
             await productsRepository.DeleteAsync(id);
         }
-        public async Task<List<ProductDto>> GetFilteredProductsAsync(ProductFilterRequest filter)
-        {
-            var products = await productsRepository.GetFilteredProductsAsync(filter);
-            return products.ToProductDtos();
-        }
+        
 
-        public async Task<int> GetFilteredProductsCountAsync(ProductFilterRequest filter)
-        {
-            return await productsRepository.GetFilteredProductsCountAsync(filter);
-        }
+        
   
         public async Task<PagedResult<ProductDto>> GetFilteredProductsPagedAsync(ProductFilterRequest filter)
         {

@@ -2,7 +2,7 @@
 using PcGear.Core.Dtos.Requests;
 using PcGear.Core.Mapping;
 using PcGear.Database.Repos;
-
+using PcGear.Infrastructure.Exceptions;
 
 namespace PcGear.Core.Services
 {
@@ -19,6 +19,9 @@ namespace PcGear.Core.Services
             var manufacturers = await manufacturersRepository.GetAllAsync();
             return manufacturers.ToManufacturerDtos();
         }
-    }
 
+        
+
+        
+    }
 }

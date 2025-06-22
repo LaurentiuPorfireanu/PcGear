@@ -27,16 +27,6 @@ namespace PcGear.Database.QueryExtensions
                 query = query.Where(p => p.Price <= filter.MaxPrice.Value);
             }
 
-            if (filter.MinStock.HasValue)
-            {
-                query = query.Where(p => p.Stock >= filter.MinStock.Value);
-            }
-
-            if (filter.MaxStock.HasValue)
-            {
-                query = query.Where(p => p.Stock <= filter.MaxStock.Value);
-            }
-
             if (filter.CategoryIds != null && filter.CategoryIds.Any())
             {
                 query = query.Where(p => filter.CategoryIds.Contains(p.CategoryId));
@@ -125,10 +115,10 @@ namespace PcGear.Database.QueryExtensions
         public static IQueryable<T> ApplyPagination<T>(this IQueryable<T> query, ProductFilterRequest filter)
         {
             if (filter == null)
-                return query.Take(10); 
+                return query.Take(10);
 
-            var skip = (filter.ValidatedPage - 1) * filter.ValidatedPageSize;
-            return query.Skip(skip).Take(filter.ValidatedPageSize);
+            var skip = (filter.Page - 1) * filter.PageSize;
+            return query.Skip(skip).Take(filter.PageSize);
         }
 
   
