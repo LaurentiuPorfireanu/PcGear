@@ -62,27 +62,6 @@ namespace PcGear.Database.Repos
             }
         }
 
-        public async Task<List<Product>> GetFilteredProductsAsync(ProductFilterRequest filter)
-        {
-            var query = databaseContext.Products
-                .Include(p => p.Category)
-                .Include(p => p.Manufacturer)
-                .Where(p => p.DeletedAt == null);
-
-            query = query.ApplyFiltersAndSorting(filter);  
-
-            return await query.ToListAsync();
-        }
-
-        public async Task<int> GetFilteredProductsCountAsync(ProductFilterRequest filter)
-        {
-            var query = databaseContext.Products
-                .Where(p => p.DeletedAt == null);
-
-            query = query.ApplyFilters(filter);
-
-            return await query.CountAsync();
-        }
 
         public async Task<PagedResult<Product>> GetFilteredProductsPagedAsync(ProductFilterRequest filter)
         {
@@ -102,8 +81,8 @@ namespace PcGear.Database.Repos
             return new PagedResult<Product>(
                 products,
                 totalCount,
-                filter?.ValidatedPage ?? 1,
-                filter?.ValidatedPageSize ?? 10,
+                filter?.Page ?? 1,
+                filter?.PageSize ?? 10,
                 filter ?? new ProductFilterRequest()
             );
         }

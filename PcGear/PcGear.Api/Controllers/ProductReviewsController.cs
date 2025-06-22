@@ -10,7 +10,8 @@ namespace PcGear.Api.Controllers
     [Authorize]
     public class ProductReviewsController(ProductReviewsService reviewsService) : ControllerBase
     {
-        [HttpPost("add_review")]
+        [HttpPost("Add_review")]
+        [Authorize]
         public async Task<IActionResult> AddReview([FromBody] AddProductReviewRequest request)
         {
             await reviewsService.AddReviewAsync(request);

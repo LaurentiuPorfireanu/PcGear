@@ -17,7 +17,7 @@ namespace PcGear.Api.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             try
@@ -35,7 +35,7 @@ namespace PcGear.Api.Controllers
             }
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             try
@@ -53,7 +53,7 @@ namespace PcGear.Api.Controllers
             }
         }
 
-        [HttpGet("profile")]
+        [HttpGet("profile(test)")]
         [Authorize]
         public IActionResult GetProfile()
         {
