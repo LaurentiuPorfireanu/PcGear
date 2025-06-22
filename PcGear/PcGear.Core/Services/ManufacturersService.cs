@@ -20,8 +20,32 @@ namespace PcGear.Core.Services
             return manufacturers.ToManufacturerDtos();
         }
 
-        
+        public async Task<ManufacturerDto?> GetManufacturerByIdAsync(int id)
+        {
+            var manufacturer = await manufacturersRepository.GetByIdAsync(id);
+            return manufacturer?.ToManufacturerDto();
+        }
 
-        
+        public async Task UpdateManufacturerAsync(int id, UpdateManufacturerRequest request)
+        {
+            var manufacturer = await manufacturersRepository.GetByIdAsync(id);
+            if (manufacturer == null)
+                throw new ResourceMissingException("Manufacturer not found");
+            if (!string.IsNullOrWhiteSpace(request.Name))
+                manufacturer.Name = request.Name;
+
+            if (request.Country != null)
+                manufacturer.Country = request.Country;
+
+            if (request.Website != null)
+                manufacturer.Website = request.Website;
+
+            await manufacturersRepository.UpdateAsync(manufacturer);
+        }
+
+        public async Task DeleteManufacturerAsync(int id)
+        {
+            await manufacturersRepository.DeleteAsync(id);
+        }
     }
 }

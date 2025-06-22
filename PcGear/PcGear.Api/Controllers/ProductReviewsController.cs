@@ -17,5 +17,20 @@ namespace PcGear.Api.Controllers
             await reviewsService.AddReviewAsync(request);
             return Ok("Review added successfully");
         }
+
+        [HttpGet("Get_Reviews")]
+        public async Task<IActionResult> GetAllReviews()
+        {
+            var result = await reviewsService.GetAllReviewsAsync();
+            return Ok(result);
+        }
+
+
+        [HttpDelete("Delete_by_id{id}")]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            await reviewsService.DeleteReviewAsync(id);
+            return Ok(new { message = "Review deleted successfully" });
+        }
     }
 }
